@@ -314,14 +314,7 @@ Apresente um resumo quantitativo de todos os testes executados.
 ## 7\. Evidências da execução dos testes
 
 Insira capturas de tela (prints) que comprovem a execução dos testes no ambiente de desenvolvimento.
-![alt text](image.png)
-
-Inclua evidências que mostrem:
-
-- Execução dos testes no Jest.
-- Quantidade de testes aprovados e reprovados.
-- Mensagens de erro, quando houver.
-- Correções realizadas após a identificação de falhas, se aplicável.
+![alt text](img\imagem dos testes.png)
 
 ---
 
