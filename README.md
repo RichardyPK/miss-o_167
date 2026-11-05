@@ -314,7 +314,7 @@ Apresente um resumo quantitativo de todos os testes executados.
 ## 7\. Evidências da execução dos testes
 
 Insira capturas de tela (prints) que comprovem a execução dos testes no ambiente de desenvolvimento.
-![alt text](img\imagem dos testes.png)
+![alt text](imagens\imagem_dos_testes.png)
 
 ---
 
