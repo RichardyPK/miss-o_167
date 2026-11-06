@@ -133,163 +133,208 @@ Para cada teste, preencha as informações abaixo.
 
 ---
 
-### Teste 03 – \[Nome ou descrição do teste\]
+### Teste 03 – \[Nome muito curto\]
 
-- **Funcionalidade testada:** \[Nome da função ou recurso\]
-- **Nome do teste no Jest:** \[Nome utilizado dentro do `test()` ou `it()`\]
-- **Objetivo:** \[O que o teste pretende verificar?\]
-- **Tipo de cenário:** \[Positivo / Negativo / Limite / Excepcional\]
-- **Entrada utilizada:** \[Valores enviados para a função\]
-- **Resultado esperado:** \[Qual resultado deveria ser retornado?\]
-- **Resultado obtido:** \[Qual resultado foi realmente retornado?\]
-- **Status:** \[Aprovado / Reprovado\]
+- **Funcionalidade testada:** \[validateLead (campo name)\]
+- **Nome do teste no Jest:** \[3. Nome muito curto (menos de 3 caracteres)\]
+- **Objetivo:** \[Verificar que um nome com poucos caracteres é rejeitado.\]
+- **Tipo de cenário:** \[Limite\]
+- **Entrada utilizada:** \[name: "A" (demais campos válidos)\]
+- **Resultado esperado:** \[valid: false e erro "Informe seu nome (mínimo de 2 caracteres)."\]
+- **Resultado obtido:** \[valid: false e erro "Informe seu nome (mínimo de 2 caracteres)."\]
+- **Status:** \[Aprovado\]
 
 **Código do teste:**
 
 ``` javascript
-// Insira aqui o código do teste implementado.
+// test("3. Nome muito curto (menos de 3 caracteres)", () => {
+    const resultado = validateLead({ ...leadValido, name: "A" });
+
+    expect(resultado.valid).toBe(false);
+    expect(resultado.errors).toContain("Informe seu nome (mínimo de 2 caracteres).");
+});
 ```
 ---
-### Teste 04 – \[Nome ou descrição do teste\]
+### Teste 04 – \[Nome com apenas espaços em branco\]
 
-- **Funcionalidade testada:** \[Nome da função ou recurso\]
-- **Nome do teste no Jest:** \[Nome utilizado dentro do `test()` ou `it()`\]
-- **Objetivo:** \[O que o teste pretende verificar?\]
-- **Tipo de cenário:** \[Positivo / Negativo / Limite / Excepcional\]
-- **Entrada utilizada:** \[Valores enviados para a função\]
-- **Resultado esperado:** \[Qual resultado deveria ser retornado?\]
-- **Resultado obtido:** \[Qual resultado foi realmente retornado?\]
-- **Status:** \[Aprovado / Reprovado\]
-
-**Código do teste:**
-
-``` javascript
-// Insira aqui o código do teste implementado.
-```
----
-
-### Teste 05 – \[Nome ou descrição do teste\]
-
-- **Funcionalidade testada:** \[Nome da função ou recurso\]
-- **Nome do teste no Jest:** \[Nome utilizado dentro do `test()` ou `it()`\]
-- **Objetivo:** \[O que o teste pretende verificar?\]
-- **Tipo de cenário:** \[Positivo / Negativo / Limite / Excepcional\]
-- **Entrada utilizada:** \[Valores enviados para a função\]
-- **Resultado esperado:** \[Qual resultado deveria ser retornado?\]
-- **Resultado obtido:** \[Qual resultado foi realmente retornado?\]
-- **Status:** \[Aprovado / Reprovado\]
+- **Funcionalidade testada:** \[validateLead (campo name)\]
+- **Nome do teste no Jest:** \[4. Nome com apenas espaços em branco\]
+- **Objetivo:** \[Verificar que espaços não contam como conteúdo do nome.\]
+- **Tipo de cenário:** \[ Negativo\]
+- **Entrada utilizada:** \[name: "     " (cinco espaços)\]
+- **Resultado esperado:** \[valid: false e erro de nome\]
+- **Resultado obtido:** \[valid: false e erro de nome\]
+- **Status:** \[Aprovado\]
 
 **Código do teste:**
 
 ``` javascript
-// Insira aqui o código do teste implementado.
+// test("4. Nome com apenas espaços em branco", () => {
+    const resultado = validateLead({ ...leadValido, name: "     " });
+
+    expect(resultado.valid).toBe(false);
+    expect(resultado.errors).toContain("Informe seu nome (mínimo de 2 caracteres).");
+});
 ```
 ---
 
-### Teste 06 – \[Nome ou descrição do teste\]
+### Teste 05 – \[Nome com tipo incorreto\]
 
-- **Funcionalidade testada:** \[Nome da função ou recurso\]
-- **Nome do teste no Jest:** \[Nome utilizado dentro do `test()` ou `it()`\]
-- **Objetivo:** \[O que o teste pretende verificar?\]
-- **Tipo de cenário:** \[Positivo / Negativo / Limite / Excepcional\]
-- **Entrada utilizada:** \[Valores enviados para a função\]
-- **Resultado esperado:** \[Qual resultado deveria ser retornado?\]
-- **Resultado obtido:** \[Qual resultado foi realmente retornado?\]
-- **Status:** \[Aprovado / Reprovado\]
+- **Funcionalidade testada:** \[validateLead (campo name)\]
+- **Nome do teste no Jest:** \[5. Nome com tipo incorreto (número em vez de string)\]
+- **Objetivo:** \[Verificar que valores que não são texto são rejeitados\]
+- **Tipo de cenário:** \[Excepcional\]
+- **Entrada utilizada:** \[name: 12345\]
+- **Resultado esperado:** \[valid: false e erro de nome\]
+- **Resultado obtido:** \[valid: false e erro de nome\]
+- **Status:** \[Aprovado\]
 
 **Código do teste:**
 
 ``` javascript
-// Insira aqui o código do teste implementado.
+// test("5. Nome com tipo incorreto (número em vez de string)", () => {
+    const resultado = validateLead({ ...leadValido, name: 12345 });
+
+    expect(resultado.valid).toBe(false);
+    expect(resultado.errors).toContain("Informe seu nome (mínimo de 2 caracteres).");
+});
 ```
 ---
 
-### Teste 07 – \[Nome ou descrição do teste\]
+### Teste 06 – \[E-mail sem @\]
 
-- **Funcionalidade testada:** \[Nome da função ou recurso\]
-- **Nome do teste no Jest:** \[Nome utilizado dentro do `test()` ou `it()`\]
-- **Objetivo:** \[O que o teste pretende verificar?\]
-- **Tipo de cenário:** \[Positivo / Negativo / Limite / Excepcional\]
-- **Entrada utilizada:** \[Valores enviados para a função\]
-- **Resultado esperado:** \[Qual resultado deveria ser retornado?\]
-- **Resultado obtido:** \[Qual resultado foi realmente retornado?\]
-- **Status:** \[Aprovado / Reprovado\]
+- **Funcionalidade testada:** \[validateLead (campo email)\]
+- **Nome do teste no Jest:** \[6. E-mail sem @\]
+- **Objetivo:** \[Verificar que e-mail sem arroba é rejeitado.\]
+- **Tipo de cenário:** \[Negativo\]
+- **Entrada utilizada:** \[email: "anaemail.com"\]
+- **Resultado esperado:** \[valid: false e erro "Informe um e-mail válido."\]
+- **Resultado obtido:** \[valid: false e erro "Informe um e-mail válido."\]
+- **Status:** \[Aprovado\]
 
 **Código do teste:**
 
 ``` javascript
-// Insira aqui o código do teste implementado.
+// test("6. E-mail sem @", () => {
+    const resultado = validateLead({ ...leadValido, email: "anaemail.com" });
+
+    expect(resultado.valid).toBe(false);
+    expect(resultado.errors).toContain("Informe um e-mail válido.");
+});
 ```
 ---
 
-### Teste 08 – \[Nome ou descrição do teste\]
+### Teste 07 – \[E-mail incompleto (sem domínio e sem ponto)\]
 
-- **Funcionalidade testada:** \[Nome da função ou recurso\]
-- **Nome do teste no Jest:** \[Nome utilizado dentro do `test()` ou `it()`\]
-- **Objetivo:** \[O que o teste pretende verificar?\]
-- **Tipo de cenário:** \[Positivo / Negativo / Limite / Excepcional\]
-- **Entrada utilizada:** \[Valores enviados para a função\]
-- **Resultado esperado:** \[Qual resultado deveria ser retornado?\]
-- **Resultado obtido:** \[Qual resultado foi realmente retornado?\]
-- **Status:** \[Aprovado / Reprovado\]
+- **Funcionalidade testada:** \[validateLead (campo email)\]
+- **Nome do teste no Jest:** \[7. E-mail incompleto (sem domínio e sem ponto)\]
+- **Objetivo:** \[Verificar que e-mail com @, mas sem ponto e extensão, é rejeitado.\]
+- **Tipo de cenário:** \[ Negativo / Limite \]
+- **Entrada utilizada:** \[email: "email@email"\]
+- **Resultado esperado:** \[valid: false e erro "Informe um e-mail válido."\]
+- **Resultado obtido:** \[valid: false e erro "Informe um e-mail válido."\]
+- **Status:** \[Aprovado\]
 
 **Código do teste:**
 
 ``` javascript
-// Insira aqui o código do teste implementado.
+// test("7. E-mail incompleto (sem domínio e sem ponto)", () => {
+  const resultado = validateLead({ ...leadValido, email: "email@email" });
+
+  expect(resultado.valid).toBe(false);
+  expect(resultado.errors).toContain("Informe um e-mail válido.");
+});
 ```
 ---
 
-### Teste 09 – \[Nome ou descrição do teste\]
+### Teste 08 – \[E-mail com tipo incorreto\]
 
-- **Funcionalidade testada:** \[Nome da função ou recurso\]
-- **Nome do teste no Jest:** \[Nome utilizado dentro do `test()` ou `it()`\]
-- **Objetivo:** \[O que o teste pretende verificar?\]
-- **Tipo de cenário:** \[Positivo / Negativo / Limite / Excepcional\]
-- **Entrada utilizada:** \[Valores enviados para a função\]
-- **Resultado esperado:** \[Qual resultado deveria ser retornado?\]
-- **Resultado obtido:** \[Qual resultado foi realmente retornado?\]
-- **Status:** \[Aprovado / Reprovado\]
+- **Funcionalidade testada:** \[validateLead (campo email)\]
+- **Nome do teste no Jest:** \[8. E-mail com tipo incorreto (número em vez de string)\]
+- **Objetivo:** \[Verificar que valores que não são texto são rejeitados no e-mail.\]
+- **Tipo de cenário:** \[ Excepcional\]
+- **Entrada utilizada:** \[email: 987654321\]
+- **Resultado esperado:** \[valid: false e erro "Informe um e-mail válido."\]
+- **Resultado obtido:** \[valid: false e erro "Informe um e-mail válido."\]
+- **Status:** \[Aprovado\]
 
 **Código do teste:**
 
 ``` javascript
-// Insira aqui o código do teste implementado.
+// test("8. E-mail com tipo incorreto (número em vez de string)", () => {
+    const resultado = validateLead({ ...leadValido, email: 987654321 });
+
+    expect(resultado.valid).toBe(false);
+    expect(resultado.errors).toContain("Informe um e-mail válido.");
+});
 ```
-### Teste 10 – \[Nome ou descrição do teste\]
+---
 
-- **Funcionalidade testada:** \[Nome da função ou recurso\]
-- **Nome do teste no Jest:** \[Nome utilizado dentro do `test()` ou `it()`\]
-- **Objetivo:** \[O que o teste pretende verificar?\]
-- **Tipo de cenário:** \[Positivo / Negativo / Limite / Excepcional\]
-- **Entrada utilizada:** \[Valores enviados para a função\]
-- **Resultado esperado:** \[Qual resultado deveria ser retornado?\]
-- **Resultado obtido:** \[Qual resultado foi realmente retornado?\]
-- **Status:** \[Aprovado / Reprovado\]
+### Teste 09 – \[Telefone com tipo incorreto\]
+
+- **Funcionalidade testada:** \[validateLead (campo phone)\]
+- **Nome do teste no Jest:** \[9. Telefone com tipo incorreto (número em vez de string)\]
+- **Objetivo:** \[Verificar que telefone enviado como número é rejeitado.\]
+- **Tipo de cenário:** \[Excepcional\]
+- **Entrada utilizada:** \[phone: 11999990000\]
+- **Resultado esperado:** \[valid: false e erro "O telefone deve ser um texto."\]
+- **Resultado obtido:** \[valid: false e erro "O telefone deve ser um texto."\]
+- **Status:** \[Aprovado\]
 
 **Código do teste:**
 
 ``` javascript
-// Insira aqui o código do teste implementado.
+// test("9. Telefone com tipo incorreto (número em vez de string)", () => {
+  const resultado = validateLead({ ...leadValido, phone: 11999990000 });
+
+  expect(resultado.valid).toBe(false);
+  expect(resultado.errors).toContain("O telefone deve ser um texto.");
+});
+```
+### Teste 10 – \[Modalidade inválida\]
+
+- **Funcionalidade testada:** \[validateLead (campo interest)\]
+- **Nome do teste no Jest:** \[10. Modalidade inexistente na lista permitida\]
+- **Objetivo:** \[Verificar que uma modalidade que não existe é rejeitada\]
+- **Tipo de cenário:** \[ Negativo\]
+- **Entrada utilizada:** \[interest: "Híbrido"\]
+- **Resultado esperado:** \[valid: false e erro "Selecione uma modalidade válida."\]
+- **Resultado obtido:** \[valid: false e erro "Selecione uma modalidade válida."\]
+- **Status:** \[Aprovado\]
+
+**Código do teste:**
+
+``` javascript
+// test("10. Modalidade inexistente na lista permitida", () => {
+  const resultado = validateLead({ ...leadValido, interest: "Híbrido" });
+
+  expect(resultado.valid).toBe(false);
+  expect(resultado.errors).toContain("Selecione uma modalidade válida.");
+});
 ```
 
 ---
 
-### Teste 11 – \[Nome ou descrição do teste\]
+### Teste 11 – \[Modalidade com diferença de maiúsculas/minúsculas\]
 
-- **Funcionalidade testada:** \[Nome da função ou recurso\]
-- **Nome do teste no Jest:** \[Nome utilizado dentro do `test()` ou `it()`\]
-- **Objetivo:** \[O que o teste pretende verificar?\]
-- **Tipo de cenário:** \[Positivo / Negativo / Limite / Excepcional\]
-- **Entrada utilizada:** \[Valores enviados para a função\]
-- **Resultado esperado:** \[Qual resultado deveria ser retornado?\]
-- **Resultado obtido:** \[Qual resultado foi realmente retornado?\]
-- **Status:** \[Aprovado / Reprovado\]
+- **Funcionalidade testada:** \[validateLead (campo interest)\]
+- **Nome do teste no Jest:** \[11. Modalidade com diferença de maiúsculas/minúsculas    \]
+- **Objetivo:** \[Verificar que a comparação diferencia maiúsculas de minúsculas.\]
+- **Tipo de cenário:** \[Limite\]
+- **Entrada utilizada:** \[interest: "online" (o sistema espera "Online")\]
+- **Resultado esperado:** \[valid: false e erro "Selecione uma modalidade válida."\]
+- **Resultado obtido:** \[valid: false e erro "Selecione uma modalidade válida."\]
+- **Status:** \[Aprovado\]
 
 **Código do teste:**
 
 ``` javascript
-// Insira aqui o código do teste implementado.
+// test("11. Modalidade com diferença de maiúsculas/minúsculas", () => {
+  const resultado = validateLead({ ...leadValido, interest: "online" });
+
+  expect(resultado.valid).toBe(false);
+  expect(resultado.errors).toContain("Selecione uma modalidade válida.");
+});
 ```
 ---
 ###
@@ -327,12 +372,6 @@ Registre os problemas encontrados durante a execução dos testes e as soluçõe
 | \[Jest exibiu "No tests found, exiting with code 1" ao rodar npm test.\] | \[O arquivo de teste não estava dentro de uma pasta tests com nome terminado em .test.js, que é o padrão configurado em testMatch no package.json.\] | \[Criar a pasta tests na raiz do projeto e salvar o arquivo como tests/validation.test.js, com o validation.js na pasta src.\] | \[Resolvido\] |
 | \[Divergência entre o enunciado ("menos de 3 caracteres") e a regra do código (mínimo de 2 caracteres).\] | \[A função validateLead aceita nomes a partir de 2 caracteres.\] | \[O teste 03 usa "A" (1 caractere), que é inválido nas duas regras. Se for preciso exigir 3 caracteres, basta trocar < 2 por < 3 em src/validation.js e ajustar a mensagem de erro.\] | \[Resolvido\] 
 
-Caso nenhum problema tenha sido identificado, explique.
-
-**Resposta:**
-
-\[Escreva aqui\]
-
 ---
 
 ## 9\. Análise dos resultados
@@ -347,24 +386,24 @@ Responda às questões:
 
 **Respostas:**
 
-\[Escreva aqui\]
+1. Sim. Os 11 cenários retornaram exatamente o que se esperava: os 2 cadastros válidos foram aceitos e os 9 inválidos foram rejeitados, cada um com a mensagem de erro correspondente.
+2. os de tipo incorreto (testes 05, 08 e 09), porque evitam que a aplicação quebre ao chamar trim() em algo que não é texto; o de e-mail sem domínio (teste 07), que testa o limite da expressão regular; e o de diferenciação de maiúsculas (teste 11), que protege a padronização dos dados.
+3. Nenhum teste falhou. Porém, ao montar o teste 03, foi percebida uma diferença entre o enunciado (3 caracteres) e a regra implementada (2 caracteres).
+4. nenhuma no código da aplicação. A única correção foi de organização de arquivos (pasta tests e nome validation.test.js), descrita na seção 8.
+5. a função normalizeCourseFilter; as rotas da API (/api/courses, /api/courses/:id, /api/leads e /api/health) com Supertest; e a inicialização do banco de dados.
 
 ---
 
 ## 10\. Conclusão
 
-Apresente uma conclusão sobre o processo de testes realizado.
-
-- Os testes contribuíram para identificar possíveis falhas?
-- A aplicação apresentou o comportamento esperado nos cenários testados?
-- Qual foi a importância dos testes unitários para a qualidade do software desenvolvido?
-
 **Conclusão da equipe:**
 
-\[Escreva aqui\]
+\[Os testes unitários confirmaram que a função validateLead aceita os dados corretos e bloqueia os dados inválidos nos cenários verificados (nome, e-mail, telefone e modalidade), inclusive nos casos de limite e de tipos inesperados. A aplicação apresentou o comportamento esperado em todos os 11 testes.
+
+Escrever os testes também ajudou a perceber uma inconsistência entre o enunciado e a regra do código (tamanho mínimo do nome). Isso mostra a importância dos testes unitários: eles documentam o comportamento esperado, permitem alterar o código com segurança e ajudam a encontrar problemas antes de o sistema ser usado de verdade.\]
 
 ---
 
 **Relatório elaborado por:** \[Richardy de Olieira Coutinho\]
 
-**Data da última atualização:** \[05/11/2026\]
+**Data da última atualização:** \[06/11/2026\]
